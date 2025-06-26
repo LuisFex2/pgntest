@@ -250,8 +250,21 @@
     }
 
     .app-icon {
-      font-size: 3rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
       flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+    }
+
+    .app-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .app-icon:active {
+      transform: scale(0.95);
     }
 
     .app-info h4 {
@@ -688,28 +701,48 @@
           </div>
           <div class="apps-grid">
             <div class="app-card">
-              <div class="app-icon">⚙️</div>
+              <img 
+                src="https://images.prismic.io/botheart/aF1uYXfc4bHWiwiu_tasker.png" 
+                alt="Tasker" 
+                class="app-icon"
+                onclick="window.open('https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm', '_blank')"
+              >
               <div class="app-info">
                 <h4>Tasker</h4>
                 <p>Motor de automatización - US$3 aprox. (pago único)</p>
               </div>
             </div>
             <div class="app-card">
-              <div class="app-icon">🤖</div>
+              <img 
+                src="https://images.prismic.io/botheart/aF1uZXfc4bHWiwiy_ar.png" 
+                alt="AutoResponder para WA" 
+                class="app-icon"
+                onclick="window.open('https://play.google.com/store/apps/details?id=tkstudio.autoresponderforwa', '_blank')"
+              >
               <div class="app-info">
                 <h4>AutoResponder para WA</h4>
                 <p>Respuestas automáticas - Versión Premium recomendada</p>
               </div>
             </div>
             <div class="app-card">
-              <div class="app-icon">💻</div>
+              <img 
+                src="https://images.prismic.io/botheart/aF1uZHfc4bHWiwix_termux.png" 
+                alt="Termux" 
+                class="app-icon"
+                onclick="window.open('https://f-droid.org/es/packages/com.termux/', '_blank')"
+              >
               <div class="app-info">
                 <h4>Termux</h4>
                 <p>Terminal para Android - Versión 0.118.1 (Gratuita)</p>
               </div>
             </div>
             <div class="app-card">
-              <div class="app-icon">📋</div>
+              <img 
+                src="https://images.prismic.io/botheart/aF1uYnfc4bHWiwiv_contactstask.jpeg" 
+                alt="ContactsTask" 
+                class="app-icon"
+                onclick="window.open('https://play.google.com/store/apps/details?id=com.balda.contactstask', '_blank')"
+              >
               <div class="app-info">
                 <h4>ContactsTask</h4>
                 <p>Gestión de contactos automatizada (Gratuita)</p>
