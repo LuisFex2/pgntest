@@ -5,23 +5,110 @@
   <title>Compra Aquí</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      width: 100vw;
       background: transparent;
       font-family: 'Segoe UI', Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      backdrop-filter: blur(2px);
+      color: #fff;
+      box-sizing: border-box;
+      overflow-x: hidden;
     }
     .center-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 2;
+      width: 100vw;
+      box-sizing: border-box;
+    }
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      gap: 8px;
+      box-sizing: border-box;
+      padding: 18px 2vw 0 2vw;
+    }
+    .main-content p,
+    .main-content .price-section,
+    .main-content .no-refund {
+      text-align: justify;
+    }
+    .main-content b, .main-content strong {
+      color: #00f0ff;
+      font-weight: bold;
+      filter: drop-shadow(0 0 4px #00f0ff77);
+      text-shadow: 0 0 6px #00e6ff44;
+    }
+    .apps-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+    .app-item {
+      display: flex;
+      align-items: center;
+      background: rgba(19,27,37,0.72);
+      border-radius: 8px;
+      padding: 4px 8px 4px 4px;
+      min-width: 180px;
+      box-shadow: 0 2px 8px #00f0ff15;
+      margin-bottom: 0;
+    }
+    .app-item img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-right: 7px;
+      box-shadow: 0 0 5px #00f0ff22;
+      background: #fff;
+      border: 1px solid #00f0ff22;
+      transition: transform 0.13s;
+      cursor: pointer;
+    }
+    .app-item img:active {
+      transform: scale(0.97);
+    }
+    .app-text {
+      color: #fff;
+      font-size: 0.97rem;
+      font-weight: 400;
+      letter-spacing: 0.1px;
+      margin-right: 0;
+      white-space: pre-line;
+    }
+    .price-section {
+      font-size: 1.11rem;
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+    .price-section b {
+      color: #00f0ff;
+      font-weight: bold;
+      letter-spacing: 0.2px;
+    }
+    .no-refund {
+      color: #f7f7f7;
+      font-size: 0.97rem;
+      opacity: 0.7;
+      margin-bottom: 2px;
+      margin-top: -2px;
+    }
+    .btn-section {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
     }
     .neon-btn {
       font-weight: bold;
@@ -29,14 +116,18 @@
       background: #00f0ff;
       border: 3px solid #052b4c;
       border-radius: 10px;
-      padding: 18px 48px;
-      font-size: 1.6rem;
+      padding: 15px 36px;
+      font-size: 1.19rem;
       cursor: pointer;
       box-shadow: 0 0 10px #00f0ff, 0 0 40px #00f0ff, 0 0 80px #00f0ff;
       transition: transform 0.13s, box-shadow 0.25s;
       outline: none;
       text-shadow: 0 2px 8px #00e6ff;
       letter-spacing: 1px;
+      position: relative;
+      z-index: 2;
+      display: block;
+      margin: 0 auto;
     }
     .neon-btn:active {
       transform: scale(0.97);
@@ -49,6 +140,7 @@
       animation: ripple 0.6s linear;
       background: rgba(0, 240, 255, 0.3);
       pointer-events: none;
+      z-index: 1;
     }
     @keyframes ripple {
       to {
@@ -61,23 +153,27 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(50, 78, 102, 0.29);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       z-index: 10;
       animation: fadeIn 0.18s;
+      padding-top: 48px;
+      box-sizing: border-box;
+      min-height: 100vh;
+      width: 100vw;
     }
     .modal {
       background: #181c22f2;
-      border-radius: 14px;
-      padding: 30px 20px 18px 20px;
+      border-radius: 10px;
+      padding: 18px 9px 9px 9px;
       box-shadow: 0 8px 40px #00f0ff44;
-      min-width: 320px;
-      max-width: 94vw;
+      min-width: 220px;
+      max-width: 96vw;
     }
     .option-list {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 8px;
     }
     .option-btn {
       display: flex;
@@ -86,8 +182,8 @@
       background: #232b36;
       border: none;
       border-radius: 7px;
-      padding: 16px 18px;
-      font-size: 1.13rem;
+      padding: 9px 12px;
+      font-size: 1.04rem;
       color: #fff;
       font-weight: 500;
       cursor: pointer;
@@ -96,6 +192,7 @@
       box-shadow: 0 1px 8px #00f0ff18;
       opacity: 1 !important;
       z-index: 2 !important;
+      position: relative;
     }
     .option-btn:first-child {
       margin-top: 0;
@@ -104,18 +201,19 @@
       background: #273541;
     }
     .option-btn img {
-      width: 48px;
-      height: 48px;
+      width: 34px;
+      height: 34px;
       object-fit: contain;
-      margin-left: 20px;
+      margin-left: 12px;
       border-radius: 6px;
       box-shadow: 0 0 4px #00f0ff22;
       background: #fff;
+      display: block;
     }
     .modal-btn-center {
       display: flex;
       justify-content: center;
-      margin-top: 28px;
+      margin-top: 10px;
     }
     .close-btn {
       border: none;
@@ -123,8 +221,8 @@
       color: #111;
       font-weight: bold;
       border-radius: 7px;
-      padding: 10px 24px;
-      font-size: 1rem;
+      padding: 8px 16px;
+      font-size: 0.97rem;
       cursor: pointer;
       box-shadow: 0 0 16px #00f0ff55;
       transition: background 0.15s;
@@ -137,27 +235,53 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
+      gap: 8px;
     }
-    /* Imagen tamaño más razonable */
     .img-view img {
       width: 85vw;
-      max-width: 360px;
+      max-width: 260px;
       height: auto;
-      max-height: 70vh;
-      border-radius: 12px;
+      max-height: 58vh;
+      border-radius: 10px;
       box-shadow: 0 2px 18px #00f0ff44;
       object-fit: contain;
       background: #fff;
     }
+    .transfiere-label-modal {
+      display: block;
+      text-align: center;
+      background: #00f0ff;
+      color: #181c22;
+      font-weight: bold;
+      font-size: 1.06em;
+      border-radius: 6px;
+      margin-bottom: 13px;
+      margin-top: -5px;
+      box-shadow: 0 2px 10px #00e6ff44;
+      border: 2px solid #052b4c;
+      padding: 5px 16px 4px 16px;
+      min-width: 120px;
+      letter-spacing: 0.5px;
+      width: fit-content;
+    }
     @media (max-width: 600px) {
-      .modal {
-        min-width: 85vw;
-        padding-left: 4vw;
-        padding-right: 4vw;
+      html, body {
+        min-height: 0 !important;
+        height: auto !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
       }
-      .img-view img {
-        max-width: 94vw;
+      .main-content {
+        min-height: 0 !important;
+        height: auto !important;
+        max-width: 99vw !important;
+        padding: 10px 2vw 0 2vw !important;
+        box-sizing: border-box;
+      }
+      .transfiere-label-modal {
+        font-size: 1em;
+        min-width: 90px;
+        padding: 4px 10px 3px 10px;
       }
     }
     @keyframes fadeIn {
@@ -167,32 +291,123 @@
   </style>
 </head>
 <body>
-  <div class="center-content">
-    <button id="compraBtn" class="neon-btn" style="position:relative;">Compra Aquí</button>
+  <div class="center-content" id="mainContainer">
+    <div class="main-content" id="contenidoPrincipal">
+      <p>
+        Sorprende a tus clientes con <b>respuestas automáticas que contengan todo tipo de archivos multimedia y agendamiento de contactos.</b> Descubre una herramienta completa y a tu alcance para potenciar tu negocio.
+      </p>
+      <p>
+        <b>Para implementar este proyecto Necesitas las siguientes Aplicaciones no incluidas en la compra:</b>
+      </p>
+      <div class="apps-row">
+        <div class="app-item">
+          <a href="https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm" target="_blank" rel="noopener">
+            <img src="https://images.prismic.io/botheart/aF1uYXfc4bHWiwiu_tasker.png" alt="Tasker" title="Tasker">
+          </a>
+          <span class="app-text">- US 3 Aprox. único pago</span>
+        </div>
+        <div class="app-item">
+          <a href="https://play.google.com/store/apps/details?id=tkstudio.autoresponderforwa" target="_blank" rel="noopener">
+            <img src="https://images.prismic.io/botheart/aF1uZXfc4bHWiwiy_ar.png" alt="AutoResponder" title="AutoResponder para WA">
+          </a>
+          <span class="app-text">- WA Recomendable Versión premium o APK MOD</span>
+        </div>
+        <div class="app-item">
+          <a href="https://f-droid.org/es/packages/com.termux/" target="_blank" rel="noopener">
+            <img src="https://images.prismic.io/botheart/aF1uZHfc4bHWiwix_termux.png" alt="Termux" title="Termux">
+          </a>
+          <span class="app-text">Versión 0.118.1 - Gratuita</span>
+        </div>
+        <div class="app-item">
+          <a href="https://play.google.com/store/apps/details?id=com.balda.contactstask" target="_blank" rel="noopener">
+            <img src="https://images.prismic.io/botheart/aF1uYnfc4bHWiwiv_contactstask.jpeg" alt="ContactsTask" title="ContactsTask">
+          </a>
+          <span class="app-text">- Gratuita</span>
+        </div>
+        <div class="app-item">
+          <a href="https://play.google.com/store/apps/details?id=com.balda.touchtask" target="_blank" rel="noopener">
+            <img src="https://images.prismic.io/botheart/aF1uY3fc4bHWiwiw_touchtask.png" alt="TouchTask" title="TouchTask">
+          </a>
+          <span class="app-text">- Gratuita o APK</span>
+        </div>
+      </div>
+      <div class="price-section">
+        <b>Precio del Proyecto: US 80</b>
+      </div>
+      <div class="no-refund">
+        No tiene devolución ya que es un producto Digital
+      </div>
+      <div class="btn-section" id="btnSection">
+        <button id="compraBtn" class="neon-btn">Compra Aquí</button>
+      </div>
+    </div>
+    <div id="modalRoot"></div>
   </div>
-
-  <!-- Modal container (dynamic) -->
-  <div id="modalRoot"></div>
-
   <script>
-    // Ripple effect for neon button
+    // Variables de control para mostrar/ocultar los bloques
     const compraBtn = document.getElementById('compraBtn');
+    const mainContent = document.getElementById('contenidoPrincipal');
+    const btnSection = document.getElementById('btnSection');
+    const mainContainer = document.getElementById('mainContainer');
+    let soloBotonDiv = null;
+
+    // Valor de COP a mostrar, actualizado por la API
+    let copAmountText = '';
+
+    // Usamos Frankfurter API para evitar problemas de CORS
+    let copValuePromise = fetch('https://api.frankfurter.app/latest?amount=80&from=USD&to=COP')
+      .then(res => res.json())
+      .then(data => {
+        let valor_en_cop = Math.round(data.rates.COP);
+        copAmountText = `Transfiere ${valor_en_cop.toLocaleString('es-CO', {style: 'currency', currency: 'COP'})}`;
+        return copAmountText;
+      })
+      .catch(() => {
+        copAmountText = "Transfiere el valor equivalente en COP";
+        return copAmountText;
+      });
+
     compraBtn.addEventListener('click', function(e) {
+      mainContent.style.display = "none";
+      btnSection.style.display = "none";
+      if (!soloBotonDiv) {
+        soloBotonDiv = document.createElement('div');
+        soloBotonDiv.className = 'center-content';
+        soloBotonDiv.id = 'soloBotonCompra';
+        soloBotonDiv.style.width = '100%';
+        soloBotonDiv.style.display = 'flex';
+        soloBotonDiv.style.justifyContent = 'center';
+        soloBotonDiv.style.marginTop = '0';
+        soloBotonDiv.innerHTML = `<button id="compraBtnSolo" class="neon-btn" style="position:relative; margin: 0 auto;">Compra Aquí</button>`;
+        mainContainer.insertBefore(soloBotonDiv, document.getElementById('modalRoot'));
+        document.getElementById('compraBtnSolo').addEventListener('click', compraBtnHandler);
+      } else {
+        soloBotonDiv.style.display = 'flex';
+      }
+      setTimeout(() => {
+        if (soloBotonDiv) soloBotonDiv.style.display = "none";
+      }, 50);
+      triggerRipple(e.target, e);
+      setTimeout(showSelectModal, 180);
+    });
+
+    function compraBtnHandler(e) {
+      if (soloBotonDiv) soloBotonDiv.style.display = 'none';
+      triggerRipple(e.target, e);
+      setTimeout(showSelectModal, 180);
+    }
+
+    function triggerRipple(btn, e) {
       const ripple = document.createElement('span');
-      const rect = compraBtn.getBoundingClientRect();
+      const rect = btn.getBoundingClientRect();
       const size = Math.max(rect.width, rect.height);
       ripple.className = 'ripple';
       ripple.style.width = ripple.style.height = size + 'px';
       ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
       ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-      compraBtn.appendChild(ripple);
-
-      // Remove ripple after animation
+      btn.appendChild(ripple);
       ripple.addEventListener('animationend', () => ripple.remove());
-
-      // Open modal after a tiny delay for effect
-      setTimeout(showSelectModal, 180);
-    });
+    }
 
     const options = [
       {
@@ -203,12 +418,12 @@
       {
         text: 'Bancolombia',
         img: 'https://images.prismic.io/botheart/aFyhdXfc4bHWiu_K_LogoBancolombia.png',
-        action: () => showImageModal('https://images.prismic.io/botheart/aFyhc3fc4bHWiu_I_Bancolombia.jpg', 'Bancolombia')
+        action: () => showImageModal('https://images.prismic.io/botheart/aFyhc3fc4bHWiu_I_Bancolombia.jpg', 'Bancolombia', true)
       },
       {
         text: 'Nequi',
         img: 'https://images.prismic.io/botheart/aFyhdHfc4bHWiu_J_Nequi.png',
-        action: () => showImageModal('https://images.prismic.io/botheart/aFyhcnfc4bHWiu_H_Nequi.jpg', 'Nequi')
+        action: () => showImageModal('https://images.prismic.io/botheart/aFyhcnfc4bHWiu_H_Nequi.jpg', 'Nequi', true)
       },
       {
         text: 'Reportar Pago',
@@ -225,8 +440,8 @@
       modal.className = 'modal-bg';
       modal.innerHTML = `
         <div class="modal">
-          <div style="text-align:center;margin-bottom:18px;">
-            <span style="font-size:1.17rem;font-weight:bold;color:#fff;">Selecciona un método de pago</span>
+          <div style="text-align:center;margin-bottom:6px;">
+            <span style="font-size:1.03rem;font-weight:bold;color:#fff;">Selecciona un método de pago</span>
           </div>
           <div class="option-list">
             ${options.map((opt, idx) => `
@@ -253,23 +468,47 @@
           setTimeout(() => options[idx].action(), 120);
         });
       });
-      modal.querySelector('.close-btn').onclick = closeModal;
-      modal.onclick = function(e) { if (e.target === modal) closeModal(); }
+      modal.querySelector('.close-btn').onclick = function() {
+        if (soloBotonDiv) soloBotonDiv.style.display = 'none';
+        mainContent.style.display = "flex";
+        btnSection.style.display = "flex";
+        closeModal();
+      };
+      modal.onclick = function(e) { if (e.target === modal) {
+        if (soloBotonDiv) soloBotonDiv.style.display = 'none';
+        mainContent.style.display = "flex";
+        btnSection.style.display = "flex";
+        closeModal();
+      }}
     }
 
-    function showImageModal(imgUrl, alt) {
-      const modal = document.createElement('div');
-      modal.className = 'modal-bg';
-      modal.innerHTML = `
-        <div class="modal img-view">
-          <img src="${imgUrl}" alt="${alt}">
-          <button class="close-btn">Cerrar</button>
-        </div>
-      `;
-      document.getElementById('modalRoot').innerHTML = '';
-      document.getElementById('modalRoot').appendChild(modal);
-      modal.querySelector('.close-btn').onclick = closeModal;
-      modal.onclick = function(e) { if (e.target === modal) closeModal(); }
+    // showImageModal: recibe un parámetro extra para mostrar el label si es necesario
+    function showImageModal(imgUrl, alt, showTransfiereLabel) {
+      copValuePromise.then((copText) => {
+        const modal = document.createElement('div');
+        modal.className = 'modal-bg';
+        modal.innerHTML = `
+          <div class="modal img-view">
+            ${showTransfiereLabel ? `<span class="transfiere-label-modal">${copText}</span>` : ''}
+            <img src="${imgUrl}" alt="${alt}">
+            <button class="close-btn">Cerrar</button>
+          </div>
+        `;
+        document.getElementById('modalRoot').innerHTML = '';
+        document.getElementById('modalRoot').appendChild(modal);
+        modal.querySelector('.close-btn').onclick = function() {
+          if (soloBotonDiv) soloBotonDiv.style.display = 'none';
+          mainContent.style.display = "flex";
+          btnSection.style.display = "flex";
+          closeModal();
+        };
+        modal.onclick = function(e) { if (e.target === modal) {
+          if (soloBotonDiv) soloBotonDiv.style.display = 'none';
+          mainContent.style.display = "flex";
+          btnSection.style.display = "flex";
+          closeModal();
+        }};
+      });
     }
 
     function closeModal() {
